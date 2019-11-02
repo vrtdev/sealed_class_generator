@@ -7,9 +7,9 @@ class Repo {
   static Random _random = Random();
   static const _chars = "abcdefghijklmnopqrstuvwxyz";
 
-  List<$Data> generateRandomData({final int amountOfData = 100}) =>
+  List<$WidgetData> generateRandomData({final int amountOfData = 100}) =>
       List.generate(amountOfData, (_) => _random.nextInt(4)).map((it) {
-        $Data d;
+        $WidgetData d;
         switch (it) {
           case 0:
             d = ContainerData(_randomColor());

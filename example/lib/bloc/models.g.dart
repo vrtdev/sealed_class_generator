@@ -6,8 +6,9 @@ part of 'models.dart';
 // SealedGenerator
 // **************************************************************************
 
-abstract class $Data
-    implements Data<ContainerData, TextData, BoringData, FlutterLogoData> {
+abstract class $WidgetData
+    implements
+        WidgetData<ContainerData, TextData, BoringData, FlutterLogoData> {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,

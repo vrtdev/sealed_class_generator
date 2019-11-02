@@ -1,17 +1,25 @@
-import 'package:example/repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-import 'models.dart';
+import 'bloc/bloc.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'A practical use case of sealed classes',
-      theme: ThemeData.dark(),
-      home: MyHomePage(),
+    return MultiProvider(
+      providers: [
+        RepositoryProvider(builder: (_) => Repo()),
+        BlocProvider(
+            builder: (context) => MyBloc(RepositoryProvider.of(context)))
+      ],
+      child: MaterialApp(
+        title: 'A practical use case of sealed classes',
+        theme: ThemeData.dark(),
+        home: MyHomePage(),
+      ),
     );
   }
 }
@@ -20,33 +28,39 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final repository = Repo();
-    final rawData = repository.generateRandomData();
-    final widgets = rawData
-        .map(
-          (data) => data.fold(
-            mapToContainerDataWidget,
-            mapToTextDataWidget,
-            mapToBoringDataWidget,
-            mapToFlutterLogoWidget,
-          ),
-        )
-        .toList(growable: false);
+  Widget build(BuildContext context) => BlocBuilder<MyBloc, $MyState>(
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(title: Text("Sealed Class Examples")),
+          body: state.fold(mapLoading, mapData, mapFailure),
+        ),
+      );
 
-    return Scaffold(
-      appBar: AppBar(title: Text("Sealed Class Examples")),
-      body: ListView(children: widgets),
-    );
+  Widget mapLoading(Loading loading) =>
+      Center(child: CircularProgressIndicator());
+
+  Widget mapData(Data data) {
+    Widget mapToContainerDataWidget(ContainerData data) => MyContainer(data);
+
+    Widget mapToTextDataWidget(TextData data) => MyText(data);
+
+    Widget mapToBoringDataWidget(BoringData data) => MyBoringWidget(data);
+
+    Widget mapToFlutterLogoWidget(FlutterLogoData data) => MyFlutterLogo(data);
+
+    return ListView(
+        children: data.data
+            .map(
+              (data) => data.fold(
+                mapToContainerDataWidget,
+                mapToTextDataWidget,
+                mapToBoringDataWidget,
+                mapToFlutterLogoWidget,
+              ),
+            )
+            .toList(growable: false));
   }
 
-  Widget mapToContainerDataWidget(ContainerData data) => MyContainer(data);
-
-  Widget mapToTextDataWidget(TextData data) => MyText(data);
-
-  Widget mapToBoringDataWidget(BoringData data) => MyBoringWidget(data);
-
-  Widget mapToFlutterLogoWidget(FlutterLogoData data) => MyFlutterLogo(data);
+  Widget mapFailure(Failure failure) => Center(child: Text(failure.errorMsg));
 }
 
 //<editor-fold desc="Helper Widgets">
