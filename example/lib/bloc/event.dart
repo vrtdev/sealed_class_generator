@@ -5,17 +5,18 @@ import 'models.dart';
 part 'event.g.dart';
 
 @Sealed()
-class MyEvent<DataLoadingCompleteEvent, ErrorEvent> {}
+abstract class MyEvent<DataLoadingCompleteEvent, ErrorEvent>
+    implements $MyEvent {}
 
 class DataLoadingCompleteEvent
     with _$DataLoadingCompleteEvent
-    implements $MyEvent {
+    implements MyEvent {
   final List<WidgetData> data;
 
   DataLoadingCompleteEvent(this.data);
 }
 
-class ErrorEvent with _$ErrorEvent implements $MyEvent {
+class ErrorEvent with _$ErrorEvent implements MyEvent {
   final String errorMsg;
 
   ErrorEvent(this.errorMsg);

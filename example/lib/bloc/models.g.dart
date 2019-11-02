@@ -6,9 +6,7 @@ part of 'models.dart';
 // SealedGenerator
 // **************************************************************************
 
-abstract class $WidgetData
-    implements
-        WidgetData<ContainerData, TextData, BoringData, FlutterLogoData> {
+mixin $WidgetData {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -41,6 +39,7 @@ mixin _$ContainerData {
   ) =>
       mapContainerData(this);
 }
+
 mixin _$TextData {
   void continued(
     Function(ContainerData) continuationContainerData,
@@ -58,6 +57,7 @@ mixin _$TextData {
   ) =>
       mapTextData(this);
 }
+
 mixin _$BoringData {
   void continued(
     Function(ContainerData) continuationContainerData,
@@ -75,6 +75,7 @@ mixin _$BoringData {
   ) =>
       mapBoringData(this);
 }
+
 mixin _$FlutterLogoData {
   void continued(
     Function(ContainerData) continuationContainerData,

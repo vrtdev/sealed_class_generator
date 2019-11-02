@@ -6,8 +6,7 @@ part of 'event.dart';
 // SealedGenerator
 // **************************************************************************
 
-abstract class $MyEvent
-    implements MyEvent<DataLoadingCompleteEvent, ErrorEvent> {
+mixin $MyEvent {
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,
     Function(ErrorEvent) continuationErrorEvent,
@@ -32,6 +31,7 @@ mixin _$DataLoadingCompleteEvent {
   ) =>
       mapDataLoadingCompleteEvent(this);
 }
+
 mixin _$ErrorEvent {
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,

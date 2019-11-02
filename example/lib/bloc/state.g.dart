@@ -6,7 +6,7 @@ part of 'state.dart';
 // SealedGenerator
 // **************************************************************************
 
-abstract class $MyState implements MyState<Loading, Data, Failure> {
+mixin $MyState {
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -35,6 +35,7 @@ mixin _$Loading {
   ) =>
       mapLoading(this);
 }
+
 mixin _$Data {
   void continued(
     Function(Loading) continuationLoading,
@@ -50,6 +51,7 @@ mixin _$Data {
   ) =>
       mapData(this);
 }
+
 mixin _$Failure {
   void continued(
     Function(Loading) continuationLoading,

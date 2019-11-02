@@ -28,7 +28,7 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<MyBloc, $MyState>(
+  Widget build(BuildContext context) => BlocBuilder<MyBloc, MyState>(
         builder: (context, state) => Scaffold(
           appBar: AppBar(title: Text("Sealed Class Examples")),
           body: state.fold(mapLoading, mapData, mapFailure),

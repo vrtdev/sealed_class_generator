@@ -4,7 +4,7 @@ import 'event.dart';
 import 'repo.dart';
 import 'state.dart';
 
-class MyBloc extends Bloc<$MyEvent, $MyState> {
+class MyBloc extends Bloc<MyEvent, MyState> {
   final Repo repo;
 
   MyBloc(this.repo) {
@@ -12,18 +12,18 @@ class MyBloc extends Bloc<$MyEvent, $MyState> {
   }
 
   @override
-  $MyState get initialState => Loading();
+  MyState get initialState => Loading();
 
   @override
-  Stream<$MyState> mapEventToState($MyEvent event) =>
+  Stream<MyState> mapEventToState(MyEvent event) =>
       event.fold(mapDataLoadingCompleteEvent, mapErrorEvent);
 
-  Stream<$MyState> mapDataLoadingCompleteEvent(
+  Stream<MyState> mapDataLoadingCompleteEvent(
       final DataLoadingCompleteEvent event) async* {
     yield Data(event.data);
   }
 
-  Stream<$MyState> mapErrorEvent(final ErrorEvent errorEvent) async* {
+  Stream<MyState> mapErrorEvent(final ErrorEvent errorEvent) async* {
     yield Failure(errorEvent.errorMsg);
   }
 
