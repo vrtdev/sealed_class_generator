@@ -1,0 +1,22 @@
+name: example
+description: A project used to demo the sealed class generator
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.5.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sealed_class:
+    path: ../sealed_class/
+
+dev_dependencies:
+  build_runner: ^1.7.1
+  flutter_test:
+    sdk: flutter
+  sealed_class_generator:
+    path: ../sealed_class_generator/
+
+flutter:
+  uses-material-design: true

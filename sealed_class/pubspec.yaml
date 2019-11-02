@@ -1,0 +1,12 @@
+name: sealed_class
+description: Make a sealed class hierarchy
+version: 1.0.0
+author: Tim Rijckaert <tim.rijckaert@gmail.com>
+
+environment:
+  sdk: ">=2.5.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  test: ^1.9.3
