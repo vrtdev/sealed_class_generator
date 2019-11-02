@@ -8,7 +8,7 @@ class MyBloc extends Bloc<MyEvent, MyState> {
   final Repo repo;
 
   MyBloc(this.repo) {
-    doSomeLangRunningWork();
+    doSomeLongRunningWork();
   }
 
   @override
@@ -27,7 +27,7 @@ class MyBloc extends Bloc<MyEvent, MyState> {
     yield Failure(errorEvent.errorMsg);
   }
 
-  Future<void> doSomeLangRunningWork() async {
+  Future<void> doSomeLongRunningWork() async {
     await Future.delayed(Duration(seconds: 5));
     add(DataLoadingCompleteEvent(repo.generateRandomData()));
     await Future.delayed(Duration(seconds: 10));
