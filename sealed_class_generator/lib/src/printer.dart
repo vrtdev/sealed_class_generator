@@ -11,7 +11,7 @@ class PrinterOutput {
   String toString() => (StringBuffer()
         ..write(sealedClassDeclaration)
         ..writeln()
-        ..write(mixinDeclarations.join()))
+        ..write(mixinDeclarations.join("\n")))
       .toString();
 }
 
@@ -23,7 +23,6 @@ class Printer {
 
   static PrinterOutput printOutput(
     final String className,
-    final String completeClassDeclaration,
     final Iterable<ParsedData> typeParamData,
   ) {
     String generateCompleteContinuedMethodDeclaration(
@@ -52,13 +51,10 @@ class Printer {
           .toString();
     }
 
-    String generateSealedClassDeclaration(
-        final String className,
-        final String completeClassDeclaration,
-        final Iterable<ParsedData> parseData) {
+    String generateSealedClassMixin(
+        final String className, final Iterable<ParsedData> parseData) {
       return (StringBuffer()
-            ..writeln(
-                "abstract class \$${className} implements ${completeClassDeclaration}")
+            ..writeln("mixin \$${className}")
             ..writeln("{")
             ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
             ..write(";")
@@ -88,9 +84,8 @@ class Printer {
       }
     }
 
-    final sealedClassDeclaration = generateSealedClassDeclaration(
+    final sealedClassDeclaration = generateSealedClassMixin(
       className,
-      completeClassDeclaration,
       typeParamData,
     );
 

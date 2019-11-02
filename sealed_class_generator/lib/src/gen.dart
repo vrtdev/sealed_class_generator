@@ -22,14 +22,12 @@ class SealedGenerator extends GeneratorForAnnotation<Sealed> {
 
     Checker.checkInputValidity(
       visitor.className,
-      visitor.completeClassDeclaration,
       visitor.typeParams,
     );
 
     final typeParameterData = TypeParameterParser.parse(visitor.typeParams);
     final printerOutput = Printer.printOutput(
       visitor.className,
-      visitor.completeClassDeclaration,
       typeParameterData,
     );
 

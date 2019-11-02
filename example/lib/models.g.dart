@@ -6,8 +6,7 @@ part of 'models.dart';
 // SealedGenerator
 // **************************************************************************
 
-abstract class $Data
-    implements Data<ContainerData, TextData, BoringData, FlutterLogoData> {
+mixin $Data {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -40,6 +39,7 @@ mixin _$ContainerData {
   ) =>
       mapContainerData(this);
 }
+
 mixin _$TextData {
   void continued(
     Function(ContainerData) continuationContainerData,
@@ -57,6 +57,7 @@ mixin _$TextData {
   ) =>
       mapTextData(this);
 }
+
 mixin _$BoringData {
   void continued(
     Function(ContainerData) continuationContainerData,
@@ -74,6 +75,7 @@ mixin _$BoringData {
   ) =>
       mapBoringData(this);
 }
+
 mixin _$FlutterLogoData {
   void continued(
     Function(ContainerData) continuationContainerData,

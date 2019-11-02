@@ -56,7 +56,8 @@ class MyContainer extends StatelessWidget {
   MyContainer(this.data, {Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(color: data.color);
+  Widget build(BuildContext context) =>
+      Container(height: 50, color: data.color);
 }
 
 class MyText extends StatelessWidget {
@@ -74,7 +75,8 @@ class MyBoringWidget extends StatelessWidget {
   const MyBoringWidget(this.data, {Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Placeholder();
+  Widget build(BuildContext context) =>
+      SizedBox(child: Placeholder(), height: 50);
 }
 
 class MyFlutterLogo extends StatelessWidget {
