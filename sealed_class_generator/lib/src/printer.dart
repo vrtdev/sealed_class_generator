@@ -1,3 +1,4 @@
+import 'common.dart';
 import 'parser.dart';
 
 class PrinterOutput {
@@ -44,7 +45,7 @@ class Printer {
           parseData.map((it) => "${it.toFoldFunctionDeclaration()}");
 
       return (StringBuffer()
-            ..writeln("R $_foldMethodName<R>(")
+            ..writeln("$typeParam $_foldMethodName<$typeParam>(")
             ..writeln(foldFunctionDeclarations.join(","))
             ..writeln(",")
             ..writeln(")"))
