@@ -38,7 +38,7 @@ abstract class Result<Failure, Success>{}
 ```
 
 Let your subclasses mixin the generated file.  
-Let your sealed class mixin the generate mixin.
+Let your sealed class implement the generated mixin.
 
 ```dart
 @Sealed()
