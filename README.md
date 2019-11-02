@@ -25,7 +25,7 @@ Define your `Sealed` class by annotating it with `@Sealed()`
 part 'yourfilename.g.dart';
 
 @Sealed()
-class Result{}
+abstract class Result{}
 ```
 
 Add the subclasses as type parameters  
@@ -34,19 +34,23 @@ Add the subclasses as type parameters
 part 'yourfilename.g.dart';
 
 @Sealed()
-class Result<Failure, Success>{}
+abstract class Result<Failure, Success>{}
 ```
 
-Let your subclasses implement the generated class and mixin:  
+Let your subclasses mixin the generated file.  
+Let your sealed class mixin the generate mixin.
 
 ```dart
-class Failure with _$Failure implements $Result {
+@Sealed()
+abstract class Result<Failure, Success> implements $Result {}
+
+class Failure with _$Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with _$Success implements $Result {
+class Success with _$Success implements Result {
   final String data;
 
   Success(this.data);
@@ -61,15 +65,15 @@ import 'package:sealed_class/sealed_class.dart';
 part 'yourfilename.g.dart';
 
 @Sealed()
-class Result<Failure, Success>{}
+abstract class Result<Failure, Success> implements $Result {}
 
-class Failure with _$Failure implements $Result {
+class Failure with _$Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with _$Success implements $Result {
+class Success with _$Success implements Result {
   final String data;
 
   Success(this.data);

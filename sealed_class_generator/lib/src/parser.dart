@@ -1,3 +1,5 @@
+import 'common.dart';
+
 class ParsedData {
   static const continuedMethodName = "continuation";
   static const mapMethodName = "map";
@@ -14,7 +16,8 @@ class ParsedData {
 
   String toFoldFunction() => "$mapMethodName$type(this);";
 
-  String toFoldFunctionDeclaration() => 'R Function($type) $mapMethodName$type';
+  String toFoldFunctionDeclaration() =>
+      '$typeParam Function($type) $mapMethodName$type';
 }
 
 class TypeParameterParser {
