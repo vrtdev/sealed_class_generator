@@ -51,10 +51,12 @@ class Printer {
           .toString();
     }
 
+    String generatedClassName(final String className) => "\$${className}";
+
     String generateSealedClassMixin(
         final String className, final Iterable<ParsedData> parseData) {
       return (StringBuffer()
-            ..writeln("mixin \$${className}")
+            ..writeln("mixin ${generatedClassName(className)}")
             ..writeln("{")
             ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
             ..write(";")
@@ -66,10 +68,11 @@ class Printer {
     }
 
     Iterable<String> generateMixinDeclarations(
-        final Iterable<ParsedData> parseData) sync* {
+        final String className, final Iterable<ParsedData> parseData) sync* {
       for (final data in parseData) {
         final output = StringBuffer()
-          ..writeln("mixin ${data.mixinName}")
+          ..writeln(
+              "mixin ${data.mixinName} implements ${generatedClassName(className)}")
           ..writeln("{")
           ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
           ..write("=>")
@@ -89,7 +92,11 @@ class Printer {
       typeParamData,
     );
 
-    final mixinDeclarations = generateMixinDeclarations(typeParamData);
+    final mixinDeclarations = generateMixinDeclarations(
+      className,
+      typeParamData,
+    );
+
     return PrinterOutput(sealedClassDeclaration, mixinDeclarations);
   }
 }
