@@ -3,9 +3,7 @@ import 'common.dart';
 class GeneratedCodeData {
   static const continuedMethodName = "continuation";
   static const mapMethodName = "map";
-
-  final String type;
-
+  
   final String generatedClassName;
 
   final String continuedFunction;
@@ -14,7 +12,7 @@ class GeneratedCodeData {
   final String foldFunction;
   final String foldFunctionDeclaration;
 
-  GeneratedCodeData(this.type)
+  GeneratedCodeData(final String type)
       : generatedClassName = "_\$$type",
         continuedFunction = "$continuedMethodName$type(this);",
         continuedFunctionDeclaration =
