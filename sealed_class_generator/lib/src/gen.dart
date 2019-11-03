@@ -22,9 +22,10 @@ class SealedGenerator extends GeneratorForAnnotation<Sealed> {
 
     Checker.checkInputValidity(visitor.className, visitor.typeParams);
 
-    final typeParameterData = Transformer.parse(visitor.typeParams);
+    final typeParameterData =
+        TypeParameterTransformer.toGeneratedCodeData(visitor.typeParams);
     final printerOutput =
-        Printer.printOutput(visitor.className, typeParameterData);
+        Printer.constructOutput(visitor.className, typeParameterData);
 
     return printerOutput.toString();
   }

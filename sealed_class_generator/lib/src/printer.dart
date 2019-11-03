@@ -21,7 +21,7 @@ class Printer {
 
   Printer._();
 
-  static PrinterOutput printOutput(
+  static PrinterOutput constructOutput(
     final String className,
     final Iterable<GeneratedCodeData> typeParamData,
   ) {

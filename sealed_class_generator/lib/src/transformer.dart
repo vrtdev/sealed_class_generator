@@ -24,9 +24,9 @@ class GeneratedCodeData {
             "$typeParam Function($type) $mapMethodName$type";
 }
 
-class Transformer {
-  Transformer._();
+class TypeParameterTransformer {
+  TypeParameterTransformer._();
 
-  static List<GeneratedCodeData> parse(final List<String> typeParameters) =>
+  static List<GeneratedCodeData> toGeneratedCodeData(final List<String> typeParameters) =>
       typeParameters.map((it) => GeneratedCodeData(it)).toList(growable: false);
 }
