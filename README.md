@@ -17,7 +17,7 @@ dev_dependencies:
 
 ## How to use:
 
-A complete example is found in the `example folder`.  
+A complete example is found in the [example](https://github.com/timrijckaert/sealed_class_generator/tree/master/example).  
 
 Define your `Sealed` class by annotating it with `@Sealed()`  
 
