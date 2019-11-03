@@ -23,6 +23,7 @@ mixin $Data {
 }
 
 mixin _$ContainerData implements $Data {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -31,6 +32,7 @@ mixin _$ContainerData implements $Data {
   ) =>
       continuationContainerData(this);
 
+  @override
   R fold<R>(
     R Function(ContainerData) mapContainerData,
     R Function(TextData) mapTextData,
@@ -41,6 +43,7 @@ mixin _$ContainerData implements $Data {
 }
 
 mixin _$TextData implements $Data {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -49,6 +52,7 @@ mixin _$TextData implements $Data {
   ) =>
       continuationTextData(this);
 
+  @override
   R fold<R>(
     R Function(ContainerData) mapContainerData,
     R Function(TextData) mapTextData,
@@ -59,6 +63,7 @@ mixin _$TextData implements $Data {
 }
 
 mixin _$BoringData implements $Data {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -67,6 +72,7 @@ mixin _$BoringData implements $Data {
   ) =>
       continuationBoringData(this);
 
+  @override
   R fold<R>(
     R Function(ContainerData) mapContainerData,
     R Function(TextData) mapTextData,
@@ -77,6 +83,7 @@ mixin _$BoringData implements $Data {
 }
 
 mixin _$FlutterLogoData implements $Data {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -85,6 +92,7 @@ mixin _$FlutterLogoData implements $Data {
   ) =>
       continuationFlutterLogoData(this);
 
+  @override
   R fold<R>(
     R Function(ContainerData) mapContainerData,
     R Function(TextData) mapTextData,

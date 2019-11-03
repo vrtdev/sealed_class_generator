@@ -74,10 +74,12 @@ class Printer {
           ..writeln(
               "mixin ${data.generatedClassName} implements ${generatedClassName(className)}")
           ..writeln("{")
+          ..writeln("@override")
           ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
           ..write("=>")
           ..writeln(data.continuedFunction)
           ..writeln("\n")
+          ..writeln("@override")
           ..writeln(generateCompleteFoldMethodDeclaration(parseData))
           ..write("=>")
           ..writeln(data.foldFunction)

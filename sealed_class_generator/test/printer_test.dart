@@ -50,6 +50,7 @@ R Function(A) mapA,R Function(B) mapB
             """
 mixin _\$A implements \$MySealedClass
 {
+@override
 void continued(
 Function(A) continuationA,Function(B) continuationB
 ,
@@ -58,6 +59,7 @@ Function(A) continuationA,Function(B) continuationB
 =>continuationA(this);
 
 
+@override
 R fold<R>(
 R Function(A) mapA,R Function(B) mapB
 ,
@@ -78,6 +80,7 @@ R Function(A) mapA,R Function(B) mapB
             """
 mixin _\$B implements \$MySealedClass
 {
+@override
 void continued(
 Function(A) continuationA,Function(B) continuationB
 ,
@@ -86,6 +89,7 @@ Function(A) continuationA,Function(B) continuationB
 =>continuationB(this);
 
 
+@override
 R fold<R>(
 R Function(A) mapA,R Function(B) mapB
 ,
