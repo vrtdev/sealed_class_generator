@@ -20,7 +20,7 @@ mixin $MyState {
   );
 }
 
-mixin _$Loading {
+mixin _$Loading implements $MyState {
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -36,7 +36,7 @@ mixin _$Loading {
       mapLoading(this);
 }
 
-mixin _$Data {
+mixin _$Data implements $MyState {
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -52,7 +52,7 @@ mixin _$Data {
       mapData(this);
 }
 
-mixin _$Failure {
+mixin _$Failure implements $MyState {
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,

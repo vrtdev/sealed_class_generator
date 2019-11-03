@@ -22,7 +22,7 @@ mixin $WidgetData {
   );
 }
 
-mixin _$ContainerData implements $Data {
+mixin _$ContainerData implements $WidgetData {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -40,7 +40,7 @@ mixin _$ContainerData implements $Data {
       mapContainerData(this);
 }
 
-mixin _$TextData implements $Data {
+mixin _$TextData implements $WidgetData {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -58,7 +58,7 @@ mixin _$TextData implements $Data {
       mapTextData(this);
 }
 
-mixin _$BoringData implements $Data {
+mixin _$BoringData implements $WidgetData {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -76,7 +76,7 @@ mixin _$BoringData implements $Data {
       mapBoringData(this);
 }
 
-mixin _$FlutterLogoData implements $Data {
+mixin _$FlutterLogoData implements $WidgetData {
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,

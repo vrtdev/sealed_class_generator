@@ -18,7 +18,7 @@ mixin $MyEvent {
   );
 }
 
-mixin _$DataLoadingCompleteEvent {
+mixin _$DataLoadingCompleteEvent implements $MyEvent {
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,
     Function(ErrorEvent) continuationErrorEvent,
@@ -32,7 +32,7 @@ mixin _$DataLoadingCompleteEvent {
       mapDataLoadingCompleteEvent(this);
 }
 
-mixin _$ErrorEvent {
+mixin _$ErrorEvent implements $MyEvent {
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,
     Function(ErrorEvent) continuationErrorEvent,
