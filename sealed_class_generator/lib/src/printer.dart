@@ -1,5 +1,5 @@
 import 'common.dart';
-import 'parser.dart';
+import 'transformer.dart';
 
 class PrinterOutput {
   final String sealedClassDeclaration;
@@ -23,12 +23,12 @@ class Printer {
 
   static PrinterOutput printOutput(
     final String className,
-    final Iterable<ParsedData> typeParamData,
+    final Iterable<GeneratedCodeData> typeParamData,
   ) {
     String generateCompleteContinuedMethodDeclaration(
-        final Iterable<ParsedData> parseData) {
+        final Iterable<GeneratedCodeData> parseData) {
       final continuedFunctionDeclarations =
-          parseData.map((it) => "${it.toContinuedFunctionDeclaration()}");
+          parseData.map((it) => "${it.continuedFunctionDeclaration}");
 
       return (StringBuffer()
             ..writeln("void $_continuedMethodName(")
@@ -39,9 +39,9 @@ class Printer {
     }
 
     String generateCompleteFoldMethodDeclaration(
-        final Iterable<ParsedData> parseData) {
+        final Iterable<GeneratedCodeData> parseData) {
       final foldFunctionDeclarations =
-          parseData.map((it) => "${it.toFoldFunctionDeclaration()}");
+          parseData.map((it) => "${it.foldFunctionDeclaration}");
 
       return (StringBuffer()
             ..writeln("$typeParam $_foldMethodName<$typeParam>(")
@@ -54,7 +54,7 @@ class Printer {
     String generatedClassName(final String className) => "\$${className}";
 
     String generateSealedClassMixin(
-        final String className, final Iterable<ParsedData> parseData) {
+        final String className, final Iterable<GeneratedCodeData> parseData) {
       return (StringBuffer()
             ..writeln("mixin ${generatedClassName(className)}")
             ..writeln("{")
@@ -68,19 +68,19 @@ class Printer {
     }
 
     Iterable<String> generateMixinDeclarations(
-        final String className, final Iterable<ParsedData> parseData) sync* {
+        final String className, final Iterable<GeneratedCodeData> parseData) sync* {
       for (final data in parseData) {
         final output = StringBuffer()
           ..writeln(
-              "mixin ${data.mixinName} implements ${generatedClassName(className)}")
+              "mixin ${data.generatedClassName} implements ${generatedClassName(className)}")
           ..writeln("{")
           ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
           ..write("=>")
-          ..writeln(data.toContinuedFunction())
+          ..writeln(data.continuedFunction)
           ..writeln("\n")
           ..writeln(generateCompleteFoldMethodDeclaration(parseData))
           ..write("=>")
-          ..writeln(data.toFoldFunction())
+          ..writeln(data.foldFunction)
           ..writeln("}");
 
         yield output.toString();
