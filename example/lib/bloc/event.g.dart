@@ -12,36 +12,40 @@ mixin $MyEvent {
     Function(ErrorEvent) continuationErrorEvent,
   );
 
-  R fold<R>(
-    R Function(DataLoadingCompleteEvent) mapDataLoadingCompleteEvent,
-    R Function(ErrorEvent) mapErrorEvent,
+  R join<R>(
+    R Function(DataLoadingCompleteEvent) joinDataLoadingCompleteEvent,
+    R Function(ErrorEvent) joinErrorEvent,
   );
 }
 
 mixin _$DataLoadingCompleteEvent implements $MyEvent {
+  @override
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,
     Function(ErrorEvent) continuationErrorEvent,
   ) =>
       continuationDataLoadingCompleteEvent(this);
 
-  R fold<R>(
-    R Function(DataLoadingCompleteEvent) mapDataLoadingCompleteEvent,
-    R Function(ErrorEvent) mapErrorEvent,
+  @override
+  R join<R>(
+    R Function(DataLoadingCompleteEvent) joinDataLoadingCompleteEvent,
+    R Function(ErrorEvent) joinErrorEvent,
   ) =>
-      mapDataLoadingCompleteEvent(this);
+      joinDataLoadingCompleteEvent(this);
 }
 
 mixin _$ErrorEvent implements $MyEvent {
+  @override
   void continued(
     Function(DataLoadingCompleteEvent) continuationDataLoadingCompleteEvent,
     Function(ErrorEvent) continuationErrorEvent,
   ) =>
       continuationErrorEvent(this);
 
-  R fold<R>(
-    R Function(DataLoadingCompleteEvent) mapDataLoadingCompleteEvent,
-    R Function(ErrorEvent) mapErrorEvent,
+  @override
+  R join<R>(
+    R Function(DataLoadingCompleteEvent) joinDataLoadingCompleteEvent,
+    R Function(ErrorEvent) joinErrorEvent,
   ) =>
-      mapErrorEvent(this);
+      joinErrorEvent(this);
 }

@@ -13,14 +13,15 @@ mixin $MyState {
     Function(Failure) continuationFailure,
   );
 
-  R fold<R>(
-    R Function(Loading) mapLoading,
-    R Function(Data) mapData,
-    R Function(Failure) mapFailure,
+  R join<R>(
+    R Function(Loading) joinLoading,
+    R Function(Data) joinData,
+    R Function(Failure) joinFailure,
   );
 }
 
 mixin _$Loading implements $MyState {
+  @override
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -28,15 +29,17 @@ mixin _$Loading implements $MyState {
   ) =>
       continuationLoading(this);
 
-  R fold<R>(
-    R Function(Loading) mapLoading,
-    R Function(Data) mapData,
-    R Function(Failure) mapFailure,
+  @override
+  R join<R>(
+    R Function(Loading) joinLoading,
+    R Function(Data) joinData,
+    R Function(Failure) joinFailure,
   ) =>
-      mapLoading(this);
+      joinLoading(this);
 }
 
 mixin _$Data implements $MyState {
+  @override
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -44,15 +47,17 @@ mixin _$Data implements $MyState {
   ) =>
       continuationData(this);
 
-  R fold<R>(
-    R Function(Loading) mapLoading,
-    R Function(Data) mapData,
-    R Function(Failure) mapFailure,
+  @override
+  R join<R>(
+    R Function(Loading) joinLoading,
+    R Function(Data) joinData,
+    R Function(Failure) joinFailure,
   ) =>
-      mapData(this);
+      joinData(this);
 }
 
 mixin _$Failure implements $MyState {
+  @override
   void continued(
     Function(Loading) continuationLoading,
     Function(Data) continuationData,
@@ -60,10 +65,11 @@ mixin _$Failure implements $MyState {
   ) =>
       continuationFailure(this);
 
-  R fold<R>(
-    R Function(Loading) mapLoading,
-    R Function(Data) mapData,
-    R Function(Failure) mapFailure,
+  @override
+  R join<R>(
+    R Function(Loading) joinLoading,
+    R Function(Data) joinData,
+    R Function(Failure) joinFailure,
   ) =>
-      mapFailure(this);
+      joinFailure(this);
 }

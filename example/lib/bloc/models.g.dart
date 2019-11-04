@@ -14,15 +14,16 @@ mixin $WidgetData {
     Function(FlutterLogoData) continuationFlutterLogoData,
   );
 
-  R fold<R>(
-    R Function(ContainerData) mapContainerData,
-    R Function(TextData) mapTextData,
-    R Function(BoringData) mapBoringData,
-    R Function(FlutterLogoData) mapFlutterLogoData,
+  R join<R>(
+    R Function(ContainerData) joinContainerData,
+    R Function(TextData) joinTextData,
+    R Function(BoringData) joinBoringData,
+    R Function(FlutterLogoData) joinFlutterLogoData,
   );
 }
 
 mixin _$ContainerData implements $WidgetData {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -31,16 +32,18 @@ mixin _$ContainerData implements $WidgetData {
   ) =>
       continuationContainerData(this);
 
-  R fold<R>(
-    R Function(ContainerData) mapContainerData,
-    R Function(TextData) mapTextData,
-    R Function(BoringData) mapBoringData,
-    R Function(FlutterLogoData) mapFlutterLogoData,
+  @override
+  R join<R>(
+    R Function(ContainerData) joinContainerData,
+    R Function(TextData) joinTextData,
+    R Function(BoringData) joinBoringData,
+    R Function(FlutterLogoData) joinFlutterLogoData,
   ) =>
-      mapContainerData(this);
+      joinContainerData(this);
 }
 
 mixin _$TextData implements $WidgetData {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -49,16 +52,18 @@ mixin _$TextData implements $WidgetData {
   ) =>
       continuationTextData(this);
 
-  R fold<R>(
-    R Function(ContainerData) mapContainerData,
-    R Function(TextData) mapTextData,
-    R Function(BoringData) mapBoringData,
-    R Function(FlutterLogoData) mapFlutterLogoData,
+  @override
+  R join<R>(
+    R Function(ContainerData) joinContainerData,
+    R Function(TextData) joinTextData,
+    R Function(BoringData) joinBoringData,
+    R Function(FlutterLogoData) joinFlutterLogoData,
   ) =>
-      mapTextData(this);
+      joinTextData(this);
 }
 
 mixin _$BoringData implements $WidgetData {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -67,16 +72,18 @@ mixin _$BoringData implements $WidgetData {
   ) =>
       continuationBoringData(this);
 
-  R fold<R>(
-    R Function(ContainerData) mapContainerData,
-    R Function(TextData) mapTextData,
-    R Function(BoringData) mapBoringData,
-    R Function(FlutterLogoData) mapFlutterLogoData,
+  @override
+  R join<R>(
+    R Function(ContainerData) joinContainerData,
+    R Function(TextData) joinTextData,
+    R Function(BoringData) joinBoringData,
+    R Function(FlutterLogoData) joinFlutterLogoData,
   ) =>
-      mapBoringData(this);
+      joinBoringData(this);
 }
 
 mixin _$FlutterLogoData implements $WidgetData {
+  @override
   void continued(
     Function(ContainerData) continuationContainerData,
     Function(TextData) continuationTextData,
@@ -85,11 +92,12 @@ mixin _$FlutterLogoData implements $WidgetData {
   ) =>
       continuationFlutterLogoData(this);
 
-  R fold<R>(
-    R Function(ContainerData) mapContainerData,
-    R Function(TextData) mapTextData,
-    R Function(BoringData) mapBoringData,
-    R Function(FlutterLogoData) mapFlutterLogoData,
+  @override
+  R join<R>(
+    R Function(ContainerData) joinContainerData,
+    R Function(TextData) joinTextData,
+    R Function(BoringData) joinBoringData,
+    R Function(FlutterLogoData) joinFlutterLogoData,
   ) =>
-      mapFlutterLogoData(this);
+      joinFlutterLogoData(this);
 }

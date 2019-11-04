@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<MyBloc, MyState>(
         builder: (context, state) => Scaffold(
           appBar: AppBar(title: Text("Sealed Class Examples")),
-          body: state.fold(mapLoading, mapData, mapFailure),
+          body: state.join(mapLoading, mapData, mapFailure),
         ),
       );
 

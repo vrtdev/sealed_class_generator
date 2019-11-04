@@ -16,7 +16,7 @@ class MyBloc extends Bloc<MyEvent, MyState> {
 
   @override
   Stream<MyState> mapEventToState(MyEvent event) =>
-      event.fold(mapDataLoadingCompleteEvent, mapErrorEvent);
+      event.join(mapDataLoadingCompleteEvent, mapErrorEvent);
 
   Stream<MyState> mapDataLoadingCompleteEvent(
       final DataLoadingCompleteEvent event) async* {
