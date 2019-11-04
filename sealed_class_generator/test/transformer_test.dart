@@ -7,7 +7,7 @@ void main() {
       final generatedCodeData =
           TypeParameterTransformer.toGeneratedCodeData(["A"]).first;
       test("should have the correct generated class name", () {
-        expect(generatedCodeData.generatedClassName, "_\$A");
+        expect(generatedCodeData.generatedClassName, "\$A");
       });
 
       group("continued function", () {
