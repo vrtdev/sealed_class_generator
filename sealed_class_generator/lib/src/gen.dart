@@ -6,7 +6,7 @@ import 'package:sealed_class/sealed_class.dart';
 import 'package:source_gen/source_gen.dart';
 
 import 'checker.dart';
-import 'parser.dart';
+import 'transformer.dart';
 import 'printer.dart';
 import 'visitor.dart';
 
@@ -20,16 +20,12 @@ class SealedGenerator extends GeneratorForAnnotation<Sealed> {
     final visitor = SealedClassVisitor();
     element.visitChildren(visitor);
 
-    Checker.checkInputValidity(
-      visitor.className,
-      visitor.typeParams,
-    );
+    Checker.checkInputValidity(visitor.className, visitor.typeParams);
 
-    final typeParameterData = TypeParameterParser.parse(visitor.typeParams);
-    final printerOutput = Printer.printOutput(
-      visitor.className,
-      typeParameterData,
-    );
+    final typeParameterData =
+        TypeParameterTransformer.toGeneratedCodeData(visitor.typeParams);
+    final printerOutput =
+        Printer.constructOutput(visitor.className, typeParameterData);
 
     return printerOutput.toString();
   }

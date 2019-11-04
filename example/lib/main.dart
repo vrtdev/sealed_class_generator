@@ -50,7 +50,7 @@ class MyHomePage extends StatelessWidget {
     return ListView(
         children: data.data
             .map(
-              (data) => data.fold(
+              (data) => data.join(
                 mapToContainerDataWidget,
                 mapToTextDataWidget,
                 mapToBoringDataWidget,

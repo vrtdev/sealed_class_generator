@@ -17,7 +17,7 @@ dev_dependencies:
 
 ## How to use:
 
-A complete example is found in the `example folder`.  
+A complete example is found in the [example](https://github.com/timrijckaert/sealed_class_generator/tree/master/example).  
 
 Define your `Sealed` class by annotating it with `@Sealed()`  
 
@@ -102,7 +102,7 @@ void main() {
 
   //Or if you want to reduce it to another value use `fold`
   final someOtherResult = Failure("Some Error Message");
-  final mapResult = someOtherResult.fold(
+  final mapResult = someOtherResult.join(
     (failure) => failure.errorMessage,
     (success) => success.data,
   );
