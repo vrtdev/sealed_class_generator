@@ -1,3 +1,9 @@
+To run the sample you'll need to run the following generation script:
+ 
+```bash
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
+
 This sample shows a more practical use case for sealed classes.  
 
 Imagine having a `List` of different data types, all of these items need their own specific UI.  
@@ -83,11 +89,3 @@ class MyHomePage extends StatelessWidget {
   Widget mapToFlutterLogoWidget(FlutterLogoData data) => MyFlutterLogo(data);
 }
 ```
-
-To regenerate run:
- 
-```bash
-flutter packages pub run build_runner build --delete-conflicting-outputs
-```
-
-
