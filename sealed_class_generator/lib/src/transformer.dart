@@ -13,7 +13,7 @@ class GeneratedCodeData {
   final String foldFunctionDeclaration;
 
   GeneratedCodeData(final String type)
-      : generatedClassName = "_\$$type",
+      : generatedClassName = "\$$type",
         continuedFunction = "$continuedMethodName$type(this);",
         continuedFunctionDeclaration =
             "Function($type) $continuedMethodName$type",

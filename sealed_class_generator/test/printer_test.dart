@@ -48,7 +48,7 @@ R Function(A) joinA,R Function(B) joinB
           expect(
             generatedMixinDeclarationA,
             """
-mixin _\$A implements \$MySealedClass
+mixin \$A implements \$MySealedClass
 {
 @override
 void continued(
@@ -78,7 +78,7 @@ R Function(A) joinA,R Function(B) joinB
           expect(
             generatedMixinDeclarationA,
             """
-mixin _\$B implements \$MySealedClass
+mixin \$B implements \$MySealedClass
 {
 @override
 void continued(
