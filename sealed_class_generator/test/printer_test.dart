@@ -28,8 +28,8 @@ Function(A) continuationA,Function(B) continuationB
 
 ;
 
-R fold<R>(
-R Function(A) mapA,R Function(B) mapB
+R join<R>(
+R Function(A) joinA,R Function(B) joinB
 ,
 )
 
@@ -60,12 +60,12 @@ Function(A) continuationA,Function(B) continuationB
 
 
 @override
-R fold<R>(
-R Function(A) mapA,R Function(B) mapB
+R join<R>(
+R Function(A) joinA,R Function(B) joinB
 ,
 )
 
-=>mapA(this);
+=>joinA(this);
 }
 """,
           );
@@ -90,12 +90,12 @@ Function(A) continuationA,Function(B) continuationB
 
 
 @override
-R fold<R>(
-R Function(A) mapA,R Function(B) mapB
+R join<R>(
+R Function(A) joinA,R Function(B) joinB
 ,
 )
 
-=>mapB(this);
+=>joinB(this);
 }
 """,
           );

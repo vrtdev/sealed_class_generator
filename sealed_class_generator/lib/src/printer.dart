@@ -17,7 +17,7 @@ class PrinterOutput {
 
 class Printer {
   static const _continuedMethodName = "continued";
-  static const _foldMethodName = "fold";
+  static const _foldMethodName = "join";
 
   Printer._();
 

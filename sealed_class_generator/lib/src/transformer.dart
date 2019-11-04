@@ -2,7 +2,7 @@ import 'common.dart';
 
 class GeneratedCodeData {
   static const continuedMethodName = "continuation";
-  static const mapMethodName = "map";
+  static const mapMethodName = "join";
   
   final String generatedClassName;
 
