@@ -102,7 +102,7 @@ void main() {
 
   //Or if you want to reduce it to another value use `fold`
   final someOtherResult = Failure("Some Error Message");
-  final mapResult = someOtherResult.fold(
+  final mapResult = someOtherResult.join(
     (failure) => failure.errorMessage,
     (success) => success.data,
   );

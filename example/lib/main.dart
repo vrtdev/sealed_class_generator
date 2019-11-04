@@ -25,7 +25,7 @@ class MyHomePage extends StatelessWidget {
     final rawData = repository.generateRandomData();
     final widgets = rawData
         .map(
-          (data) => data.fold(
+          (data) => data.join(
             mapToContainerDataWidget,
             mapToTextDataWidget,
             mapToBoringDataWidget,
