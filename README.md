@@ -44,13 +44,13 @@ Let your sealed class implement the generated mixin.
 @Sealed()
 abstract class Result<Failure, Success> implements $Result {}
 
-class Failure with _$Failure implements Result {
+class Failure with $Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with _$Success implements Result {
+class Success with $Success implements Result {
   final String data;
 
   Success(this.data);
@@ -67,13 +67,13 @@ part 'yourfilename.g.dart';
 @Sealed()
 abstract class Result<Failure, Success> implements $Result {}
 
-class Failure with _$Failure implements Result {
+class Failure with $Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with _$Success implements Result {
+class Success with $Success implements Result {
   final String data;
 
   Success(this.data);
