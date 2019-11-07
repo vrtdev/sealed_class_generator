@@ -15,36 +15,16 @@ extension DataExt on Data {
   ) {
     switch (this.runtimeType) {
       case ContainerData:
-        ContainerDataExt(this).continued(
-          continuationContainerData,
-          continuationTextData,
-          continuationBoringData,
-          continuationFlutterLogoData,
-        );
+        continuationContainerData(this);
         break;
       case TextData:
-        TextDataExt(this).continued(
-          continuationContainerData,
-          continuationTextData,
-          continuationBoringData,
-          continuationFlutterLogoData,
-        );
+        continuationTextData(this);
         break;
       case BoringData:
-        BoringDataExt(this).continued(
-          continuationContainerData,
-          continuationTextData,
-          continuationBoringData,
-          continuationFlutterLogoData,
-        );
+        continuationBoringData(this);
         break;
       case FlutterLogoData:
-        FlutterLogoDataExt(this).continued(
-          continuationContainerData,
-          continuationTextData,
-          continuationBoringData,
-          continuationFlutterLogoData,
-        );
+        continuationFlutterLogoData(this);
         break;
     }
   }
@@ -58,110 +38,18 @@ extension DataExt on Data {
     R r;
     switch (this.runtimeType) {
       case ContainerData:
-        r = ContainerDataExt(this).join(
-          joinContainerData,
-          joinTextData,
-          joinBoringData,
-          joinFlutterLogoData,
-        );
+        r = joinContainerData(this);
         break;
       case TextData:
-        r = TextDataExt(this).join(
-          joinContainerData,
-          joinTextData,
-          joinBoringData,
-          joinFlutterLogoData,
-        );
+        r = joinTextData(this);
         break;
       case BoringData:
-        r = BoringDataExt(this).join(
-          joinContainerData,
-          joinTextData,
-          joinBoringData,
-          joinFlutterLogoData,
-        );
+        r = joinBoringData(this);
         break;
       case FlutterLogoData:
-        r = FlutterLogoDataExt(this).join(
-          joinContainerData,
-          joinTextData,
-          joinBoringData,
-          joinFlutterLogoData,
-        );
+        r = joinFlutterLogoData(this);
         break;
     }
     return r;
   }
-}
-
-extension ContainerDataExt on ContainerData {
-  void continued(
-    Function(ContainerData) continuationContainerData,
-    Function(TextData) continuationTextData,
-    Function(BoringData) continuationBoringData,
-    Function(FlutterLogoData) continuationFlutterLogoData,
-  ) =>
-      continuationContainerData(this);
-
-  R join<R>(
-    R Function(ContainerData) joinContainerData,
-    R Function(TextData) joinTextData,
-    R Function(BoringData) joinBoringData,
-    R Function(FlutterLogoData) joinFlutterLogoData,
-  ) =>
-      joinContainerData(this);
-}
-
-extension TextDataExt on TextData {
-  void continued(
-    Function(ContainerData) continuationContainerData,
-    Function(TextData) continuationTextData,
-    Function(BoringData) continuationBoringData,
-    Function(FlutterLogoData) continuationFlutterLogoData,
-  ) =>
-      continuationTextData(this);
-
-  R join<R>(
-    R Function(ContainerData) joinContainerData,
-    R Function(TextData) joinTextData,
-    R Function(BoringData) joinBoringData,
-    R Function(FlutterLogoData) joinFlutterLogoData,
-  ) =>
-      joinTextData(this);
-}
-
-extension BoringDataExt on BoringData {
-  void continued(
-    Function(ContainerData) continuationContainerData,
-    Function(TextData) continuationTextData,
-    Function(BoringData) continuationBoringData,
-    Function(FlutterLogoData) continuationFlutterLogoData,
-  ) =>
-      continuationBoringData(this);
-
-  R join<R>(
-    R Function(ContainerData) joinContainerData,
-    R Function(TextData) joinTextData,
-    R Function(BoringData) joinBoringData,
-    R Function(FlutterLogoData) joinFlutterLogoData,
-  ) =>
-      joinBoringData(this);
-}
-
-extension FlutterLogoDataExt on FlutterLogoData {
-  void continued(
-    Function(ContainerData) continuationContainerData,
-    Function(TextData) continuationTextData,
-    Function(BoringData) continuationBoringData,
-    Function(FlutterLogoData) continuationFlutterLogoData,
-  ) =>
-      continuationFlutterLogoData(this);
-
-  R join<R>(
-    R Function(ContainerData) joinContainerData,
-    R Function(TextData) joinTextData,
-    R Function(BoringData) joinBoringData,
-    R Function(FlutterLogoData) joinFlutterLogoData,
-  ) =>
-      joinFlutterLogoData(this);
 }
