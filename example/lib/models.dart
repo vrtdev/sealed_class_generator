@@ -8,21 +8,21 @@ part 'models.g.dart';
 abstract class Data<ContainerData, TextData, BoringData, FlutterLogoData>
     implements $Data {}
 
-class ContainerData with _$ContainerData implements Data {
+class ContainerData with $ContainerData implements Data {
   final Color color;
 
   ContainerData(this.color);
 }
 
-class TextData with _$TextData implements Data {
+class TextData with $TextData implements Data {
   final String text;
 
   TextData(this.text);
 }
 
-class BoringData with _$BoringData implements Data {}
+class BoringData with $BoringData implements Data {}
 
-class FlutterLogoData with _$FlutterLogoData implements Data {
+class FlutterLogoData with $FlutterLogoData implements Data {
   final Duration duration;
 
   FlutterLogoData(this.duration);
