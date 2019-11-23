@@ -28,7 +28,7 @@ part 'yourfilename.g.dart';
 abstract class Result{}
 ```
 
-Add the subclasses as type parameters  
+Add the subclasses to the annotation.   
 
 ```dart
 part 'yourfilename.g.dart';
