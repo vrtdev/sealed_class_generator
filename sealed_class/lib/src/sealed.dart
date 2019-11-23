@@ -1,3 +1,5 @@
 class Sealed {
-  const Sealed();
+  final List<Type> types;
+
+  const Sealed(this.types);
 }
