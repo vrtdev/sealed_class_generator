@@ -28,21 +28,21 @@ part 'yourfilename.g.dart';
 abstract class Result{}
 ```
 
-Add the subclasses as type parameters  
+Add the subclasses to the annotation.   
 
 ```dart
 part 'yourfilename.g.dart';
 
-@Sealed()
-abstract class Result<Failure, Success>{}
+@Sealed([Failure, Success])
+abstract class Result{}
 ```
 
 Let your subclasses mixin the generated file.  
 Let your sealed class implement the generated mixin.
 
 ```dart
-@Sealed()
-abstract class Result<Failure, Success> implements $Result {}
+@Sealed([Failure, Success])
+abstract class Result implements $Result {}
 
 class Failure with $Failure implements Result {
   final String errorMessage;
@@ -64,8 +64,8 @@ import 'package:sealed_class/sealed_class.dart';
 
 part 'yourfilename.g.dart';
 
-@Sealed()
-abstract class Result<Failure, Success> implements $Result {}
+@Sealed([Failure, Success])
+abstract class Result implements $Result {}
 
 class Failure with $Failure implements Result {
   final String errorMessage;

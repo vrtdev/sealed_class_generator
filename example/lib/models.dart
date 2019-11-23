@@ -4,8 +4,13 @@ import 'package:sealed_class/sealed_class.dart';
 
 part 'models.g.dart';
 
-@Sealed()
-abstract class Data<ContainerData, TextData, BoringData, FlutterLogoData> {}
+@Sealed([
+  ContainerData,
+  TextData,
+  BoringData,
+  FlutterLogoData,
+])
+abstract class Data {}
 
 class ContainerData implements Data {
   final Color color;
