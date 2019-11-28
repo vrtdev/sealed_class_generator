@@ -1,5 +1,8 @@
 # Sealed Class Generator
 
+[![pub package](https://img.shields.io/pub/v/sealed_class.svg)](https://pub.dartlang.org/packages/sealed_class)
+[![pub package](https://img.shields.io/pub/v/sealed_class_generator.svg)](https://pub.dartlang.org/packages/sealed_class_generator)
+
 Fix Dart's lack of a sealed class.  
 Inspired by [Kotlin's implementation](https://kotlinlang.org/docs/reference/sealed-classes.html) and by [Sealed Unions](https://pub.dev/packages/sealed_unions).  
 With this lib you can generate an unlimited amount of sealed subclasses.
