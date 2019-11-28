@@ -15,7 +15,7 @@ dependencies:
 
 dev_dependencies:
   sealed_class_generator: 1.0.0
-  build_runner: 1.0.0
+  build_runner: X.X.X
 ```
 
 ## How to use:
