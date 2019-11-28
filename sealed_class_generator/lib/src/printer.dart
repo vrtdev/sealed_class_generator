@@ -67,8 +67,8 @@ class Printer {
           .toString();
     }
 
-    Iterable<String> generateMixinDeclarations(
-        final String className, final Iterable<GeneratedCodeData> parseData) sync* {
+    Iterable<String> generateMixinDeclarations(final String className,
+        final Iterable<GeneratedCodeData> parseData) sync* {
       for (final data in parseData) {
         final output = StringBuffer()
           ..writeln(

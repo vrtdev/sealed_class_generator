@@ -1,5 +1,5 @@
 name: sealed_class
-description: Make a sealed class hierarchy
+description: The annotation necessary for a sealed class hierarchy
 version: 1.0.0
 author: Tim Rijckaert <tim.rijckaert@gmail.com>
 homepage: https://github.com/vrtdev/sealed_class_generator
