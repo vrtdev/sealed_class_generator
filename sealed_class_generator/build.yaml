@@ -7,7 +7,7 @@ targets:
 builders:
   sealed_class:
     target: ":sealed_class_generator"
-    import: "package:sealed_class_generator/builder.dart"
+    import: "package:sealed_class_generator/sealed_class_generator.dart"
     builder_factories: ["sealedClassBuilder"]
     build_extensions: {".dart": [".sealed_class.g.part"]}
     auto_apply: dependents
