@@ -1,5 +1,7 @@
 name: sealed_class
-description: Make a sealed class hierarchy
+description: >
+  Annotation needed to create a sealed hierarchy in Dart.
+  This library is the runtime dependency.
 version: 1.0.0
 author: Tim Rijckaert <tim.rijckaert@gmail.com>
 homepage: https://github.com/vrtdev/sealed_class_generator
