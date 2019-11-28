@@ -12,94 +12,49 @@ void main() {
       ],
     );
 
-    group("Sealed Class Code Gen", () {
-      final generatedSealedClassDeclaration =
-          printerOutput.sealedClassDeclaration;
-      test("should match output", () {
-        expect(
-          generatedSealedClassDeclaration,
-          """
-mixin \$MySealedClass
-{
-void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
-
-;
-
-R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
-
-;}
-""",
-        );
-      });
-    });
-
-    group("Mixin Code Gen", () {
-      final generatedMixinDeclarations =
-          printerOutput.mixinDeclarations.toList(growable: false);
-      group("Type Parameter A", () {
-        final generatedMixinDeclarationA = generatedMixinDeclarations[0];
-        test("should match output", () {
-          expect(
-            generatedMixinDeclarationA,
-            """
-mixin \$A implements \$MySealedClass
-{
-@override
-void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
-
-=>continuationA(this);
-
-
-@override
-R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
-
-=>joinA(this);
-}
-""",
-          );
-        });
+    group("sealed class generator", () {
+      test("sealed class name", () {
+        expect(printerOutput.sealedClassName, "MySealedClass");
       });
 
-      group("Type Parameter B", () {
-        final generatedMixinDeclarationA = generatedMixinDeclarations[1];
-        test("should match output", () {
-          expect(
-            generatedMixinDeclarationA,
-            """
-mixin \$B implements \$MySealedClass
-{
-@override
+      test("continued", () {
+        expect(printerOutput.continuedStatement, """
 void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
+Function(A) continuationA,
+Function(B) continuationB
+,) {
+switch (this.runtimeType) {
+case A:
+continuationA(this);
+break;
+case B:
+continuationB(this);
+break;
 
-=>continuationB(this);
-
-
-@override
-R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
-
-=>joinB(this);
 }
-""",
-          );
-        });
+}
+""");
+      });
+
+      test("join", () {
+        expect(printerOutput.joinStatement, """
+R join<R>(
+R Function(A) joinA,
+R Function(B) joinB
+,) {
+R r;
+switch (this.runtimeType) {
+case A:
+r = joinA(this);
+break;
+case B:
+r = joinB(this);
+break;
+
+}
+return r;
+}
+""");
       });
     });
   });

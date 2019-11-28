@@ -2,22 +2,28 @@ import 'common.dart';
 import 'transformer.dart';
 
 class PrinterOutput {
-  final String sealedClassDeclaration;
-  final Iterable<String> mixinDeclarations;
+  final String sealedClassName;
+  final String continuedStatement;
+  final String joinStatement;
 
-  PrinterOutput(this.sealedClassDeclaration, this.mixinDeclarations);
+  PrinterOutput(
+    this.sealedClassName,
+    this.continuedStatement,
+    this.joinStatement,
+  );
 
   @override
   String toString() => (StringBuffer()
-        ..write(sealedClassDeclaration)
-        ..writeln()
-        ..write(mixinDeclarations.join("\n")))
+        ..writeln("extension ${sealedClassName}Ext on $sealedClassName {")
+        ..writeln(continuedStatement)
+        ..writeln(joinStatement)
+        ..writeln("}"))
       .toString();
 }
 
 class Printer {
   static const _continuedMethodName = "continued";
-  static const _foldMethodName = "join";
+  static const _joinMethodName = "join";
 
   Printer._();
 
@@ -25,80 +31,66 @@ class Printer {
     final String className,
     final Iterable<GeneratedCodeData> typeParamData,
   ) {
-    String generateCompleteContinuedMethodDeclaration(
-        final Iterable<GeneratedCodeData> parseData) {
-      final continuedFunctionDeclarations =
-          parseData.map((it) => "${it.continuedFunctionDeclaration}");
+    String continuedStatement(final Iterable<GeneratedCodeData> typeParamData) {
+      String continuedSwitchStatement(
+          final Iterable<GeneratedCodeData> typeParamData) {
+        final caseBuffer = StringBuffer();
+        typeParamData.forEach((it) {
+          caseBuffer
+            ..writeln("case ${it.type}:")
+            ..writeln(it.continuedFunction)
+            ..writeln("break;");
+        });
+        return caseBuffer.toString();
+      }
 
       return (StringBuffer()
-            ..writeln("void $_continuedMethodName(")
-            ..writeln(continuedFunctionDeclarations.join(","))
-            ..writeln(",")
-            ..writeln(")"))
-          .toString();
-    }
-
-    String generateCompleteFoldMethodDeclaration(
-        final Iterable<GeneratedCodeData> parseData) {
-      final foldFunctionDeclarations =
-          parseData.map((it) => "${it.foldFunctionDeclaration}");
-
-      return (StringBuffer()
-            ..writeln("$typeParam $_foldMethodName<$typeParam>(")
-            ..writeln(foldFunctionDeclarations.join(","))
-            ..writeln(",")
-            ..writeln(")"))
-          .toString();
-    }
-
-    String generatedClassName(final String className) => "\$${className}";
-
-    String generateSealedClassMixin(
-        final String className, final Iterable<GeneratedCodeData> parseData) {
-      return (StringBuffer()
-            ..writeln("mixin ${generatedClassName(className)}")
-            ..writeln("{")
-            ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
-            ..write(";")
-            ..writeln("\n")
-            ..writeln(generateCompleteFoldMethodDeclaration(parseData))
-            ..write(";")
+            ..write("void $_continuedMethodName(")
+            ..writeln()
+            ..writeln(typeParamData
+                .map((it) => it.continuedFunctionDeclaration)
+                .join(",\n"))
+            ..writeln(",) {")
+            ..writeln("switch (this.runtimeType) {")
+            ..writeln(continuedSwitchStatement(typeParamData))
+            ..writeln("}")
             ..writeln("}"))
           .toString();
     }
 
-    Iterable<String> generateMixinDeclarations(
-        final String className, final Iterable<GeneratedCodeData> parseData) sync* {
-      for (final data in parseData) {
-        final output = StringBuffer()
-          ..writeln(
-              "mixin ${data.generatedClassName} implements ${generatedClassName(className)}")
-          ..writeln("{")
-          ..writeln("@override")
-          ..writeln(generateCompleteContinuedMethodDeclaration(parseData))
-          ..write("=>")
-          ..writeln(data.continuedFunction)
-          ..writeln("\n")
-          ..writeln("@override")
-          ..writeln(generateCompleteFoldMethodDeclaration(parseData))
-          ..write("=>")
-          ..writeln(data.foldFunction)
-          ..writeln("}");
-
-        yield output.toString();
+    String joinStatement(final Iterable<GeneratedCodeData> typeParamData) {
+      String joinSwitchStatement(
+          final Iterable<GeneratedCodeData> typeParamData) {
+        final caseBuffer = StringBuffer();
+        typeParamData.forEach((it) {
+          caseBuffer
+            ..writeln("case ${it.type}:")
+            ..writeln("r = ${it.joinFunction}")
+            ..writeln("break;");
+        });
+        return caseBuffer.toString();
       }
+
+      return (StringBuffer()
+            ..write("$typeParam $_joinMethodName<$typeParam>(")
+            ..writeln()
+            ..writeln(typeParamData
+                .map((it) => it.joinFunctionDeclaration)
+                .join(",\n"))
+            ..writeln(",) {")
+            ..writeln("$typeParam ${typeParam.toLowerCase()};")
+            ..writeln("switch (this.runtimeType) {")
+            ..writeln(joinSwitchStatement(typeParamData))
+            ..writeln("}")
+            ..writeln("return ${typeParam.toLowerCase()};")
+            ..writeln("}"))
+          .toString();
     }
 
-    final sealedClassDeclaration = generateSealedClassMixin(
+    return PrinterOutput(
       className,
-      typeParamData,
+      continuedStatement(typeParamData),
+      joinStatement(typeParamData),
     );
-
-    final mixinDeclarations = generateMixinDeclarations(
-      className,
-      typeParamData,
-    );
-
-    return PrinterOutput(sealedClassDeclaration, mixinDeclarations);
   }
 }

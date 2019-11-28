@@ -6,9 +6,6 @@ void main() {
     group("to generated code data", () {
       final generatedCodeData =
           TypeParameterTransformer.toGeneratedCodeData(["A"]).first;
-      test("should have the correct generated class name", () {
-        expect(generatedCodeData.generatedClassName, "\$A");
-      });
 
       group("continued function", () {
         test("should have the correct continued function", () {
@@ -16,17 +13,19 @@ void main() {
         });
 
         test("should have the correct continued function declaration", () {
-          expect(generatedCodeData.continuedFunctionDeclaration, "Function(A) continuationA");
+          expect(generatedCodeData.continuedFunctionDeclaration,
+              "Function(A) continuationA");
         });
       });
 
       group("folding function", () {
         test("should have the correct fold function", () {
-          expect(generatedCodeData.foldFunction, "mapA(this);");
+          expect(generatedCodeData.joinFunction, "mapA(this);");
         });
 
         test("should have the correct fold function declaration", () {
-          expect(generatedCodeData.foldFunctionDeclaration, "R Function(A) mapA");
+          expect(
+              generatedCodeData.joinFunctionDeclaration, "R Function(A) mapA");
         });
       });
     });
