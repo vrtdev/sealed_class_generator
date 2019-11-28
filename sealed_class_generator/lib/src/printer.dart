@@ -2,21 +2,21 @@ import 'common.dart';
 import 'transformer.dart';
 
 class PrinterOutput {
-  final String sealedClassName;
-  final String continuedStatement;
-  final String joinStatement;
+  final String _sealedClassName;
+  final String _continuedStatement;
+  final String _joinStatement;
 
   PrinterOutput(
-    this.sealedClassName,
-    this.continuedStatement,
-    this.joinStatement,
+    this._sealedClassName,
+    this._continuedStatement,
+    this._joinStatement,
   );
 
   @override
   String toString() => (StringBuffer()
-        ..writeln("extension ${sealedClassName}Ext on $sealedClassName {")
-        ..writeln(continuedStatement)
-        ..writeln(joinStatement)
+        ..writeln("extension ${_sealedClassName}Ext on $_sealedClassName {")
+        ..writeln(_continuedStatement)
+        ..writeln(_joinStatement)
         ..writeln("}"))
       .toString();
 }

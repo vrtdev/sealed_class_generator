@@ -12,13 +12,12 @@ void main() {
       ],
     );
 
-    group("sealed class generator", () {
-      test("sealed class name", () {
-        expect(printerOutput.sealedClassName, "MySealedClass");
-      });
-
-      test("continued", () {
-        expect(printerOutput.continuedStatement, """
+    group("complete output", () {
+      test("should match", () {
+        expect(
+          printerOutput.toString(),
+"""
+extension MySealedClassExt on MySealedClass {
 void continued(
 Function(A) continuationA,
 Function(B) continuationB
@@ -33,11 +32,7 @@ break;
 
 }
 }
-""");
-      });
 
-      test("join", () {
-        expect(printerOutput.joinStatement, """
 R join<R>(
 R Function(A) joinA,
 R Function(B) joinB
@@ -54,7 +49,10 @@ break;
 }
 return r;
 }
-""");
+
+}
+""",
+        );
       });
     });
   });
