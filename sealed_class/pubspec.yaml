@@ -1,7 +1,6 @@
 name: sealed_class
 description: Make a sealed class hierarchy
 version: 2.0.0
-author: Tim Rijckaert <tim.rijckaert@gmail.com>
 homepage: https://github.com/vrtdev/sealed_class_generator
 repository: https://github.com/vrtdev/sealed_class_generator
 issue_tracker: https://github.com/vrtdev/sealed_class_generator/issues
