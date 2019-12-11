@@ -7,13 +7,14 @@ repository: https://github.com/vrtdev/sealed_class_generator
 issue_tracker: https://github.com/vrtdev/sealed_class_generator/issues
 
 environment:
-  sdk: ">=2.6.0-dev.0.0.flutter-1103600280 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   analyzer: ^0.39.1
   build: ^1.2.1
   source_gen: ^0.9.4+6
-  sealed_class: ^2.0.0
+  sealed_class:
+    path: ../sealed_class
 
 dev_dependencies:
   build_test: ^0.10.9+1
