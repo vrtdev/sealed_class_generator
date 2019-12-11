@@ -10,23 +10,23 @@ part 'models.g.dart';
   BoringData,
   FlutterLogoData,
 ])
-abstract class Data implements $Data {}
+abstract class Data {}
 
-class ContainerData with $ContainerData implements Data {
+class ContainerData implements Data {
   final Color color;
 
   ContainerData(this.color);
 }
 
-class TextData with $TextData implements Data {
+class TextData implements Data {
   final String text;
 
   TextData(this.text);
 }
 
-class BoringData with $BoringData implements Data {}
+class BoringData implements Data {}
 
-class FlutterLogoData with $FlutterLogoData implements Data {
+class FlutterLogoData implements Data {
   final Duration duration;
 
   FlutterLogoData(this.duration);

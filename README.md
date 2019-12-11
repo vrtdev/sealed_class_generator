@@ -11,10 +11,10 @@ With this lib you can generate an unlimited amount of sealed subclasses.
 
 ```yaml
 dependencies:
-  sealed_class: 1.0.0
+  sealed_class: 2.0.0
 
 dev_dependencies:
-  sealed_class_generator: 1.0.0
+  sealed_class_generator: 2.0.0
   build_runner: X.X.X
 ```
 
@@ -40,20 +40,19 @@ part 'yourfilename.g.dart';
 abstract class Result{}
 ```
 
-Let your subclasses mixin the generated file.  
-Let your sealed class implement the generated mixin.
+Your subclasses should implement your sealed class.
 
 ```dart
 @Sealed([Failure, Success])
-abstract class Result implements $Result {}
+abstract class Result {}
 
-class Failure with $Failure implements Result {
+class Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with $Success implements Result {
+class Success implements Result {
   final String data;
 
   Success(this.data);
@@ -68,15 +67,15 @@ import 'package:sealed_class/sealed_class.dart';
 part 'yourfilename.g.dart';
 
 @Sealed([Failure, Success])
-abstract class Result implements $Result {}
+abstract class Result {}
 
-class Failure with $Failure implements Result {
+class Failure implements Result {
   final String errorMessage;
 
   Failure(this.errorMessage);
 }
 
-class Success with $Success implements Result {
+class Success implements Result {
   final String data;
 
   Success(this.data);

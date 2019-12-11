@@ -12,94 +12,47 @@ void main() {
       ],
     );
 
-    group("Sealed Class Code Gen", () {
-      final generatedSealedClassDeclaration =
-          printerOutput.sealedClassDeclaration;
-      test("should match output", () {
+    group("complete output", () {
+      test("should match", () {
         expect(
-          generatedSealedClassDeclaration,
-          """
-mixin \$MySealedClass
-{
+          printerOutput.toString(),
+"""
+extension MySealedClassExt on MySealedClass {
 void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
+Function(A) continuationA,
+Function(B) continuationB
+,) {
+switch (this.runtimeType) {
+case A:
+continuationA(this);
+break;
+case B:
+continuationB(this);
+break;
 
-;
+}
+}
 
 R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
+R Function(A) joinA,
+R Function(B) joinB
+,) {
+R r;
+switch (this.runtimeType) {
+case A:
+r = joinA(this);
+break;
+case B:
+r = joinB(this);
+break;
 
-;}
+}
+return r;
+}
+
+}
 """,
         );
-      });
-    });
-
-    group("Mixin Code Gen", () {
-      final generatedMixinDeclarations =
-          printerOutput.mixinDeclarations.toList(growable: false);
-      group("Type Parameter A", () {
-        final generatedMixinDeclarationA = generatedMixinDeclarations[0];
-        test("should match output", () {
-          expect(
-            generatedMixinDeclarationA,
-            """
-mixin \$A implements \$MySealedClass
-{
-@override
-void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
-
-=>continuationA(this);
-
-
-@override
-R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
-
-=>joinA(this);
-}
-""",
-          );
-        });
-      });
-
-      group("Type Parameter B", () {
-        final generatedMixinDeclarationA = generatedMixinDeclarations[1];
-        test("should match output", () {
-          expect(
-            generatedMixinDeclarationA,
-            """
-mixin \$B implements \$MySealedClass
-{
-@override
-void continued(
-Function(A) continuationA,Function(B) continuationB
-,
-)
-
-=>continuationB(this);
-
-
-@override
-R join<R>(
-R Function(A) joinA,R Function(B) joinB
-,
-)
-
-=>joinB(this);
-}
-""",
-          );
-        });
       });
     });
   });
