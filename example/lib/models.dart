@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:sealed_class/sealed_class.dart';
 
 part 'models.g.dart';
