@@ -1,6 +1,6 @@
 name: sealed_class_generator
 description: Sealed Class generator parses and generates your sealed classes.
-version: 2.0.0
+version: 3.0.0
 homepage: https://github.com/vrtdev/sealed_class_generator
 repository: https://github.com/vrtdev/sealed_class_generator
 issue_tracker: https://github.com/vrtdev/sealed_class_generator/issues

@@ -32,14 +32,14 @@ class Printer {
     final Iterable<GeneratedCodeData> typeParamData,
   ) {
     String continuedStatement(final Iterable<GeneratedCodeData> typeParamData) {
-      String continuedSwitchStatement(
+      String continuedTypeCheckStatement(
           final Iterable<GeneratedCodeData> typeParamData) {
         final caseBuffer = StringBuffer();
         typeParamData.forEach((it) {
           caseBuffer
-            ..writeln("case ${it.type}:")
+            ..writeln("if (this is ${it.type}) {")
             ..writeln(it.continuedFunction)
-            ..writeln("break;");
+            ..writeln("}");
         });
         return caseBuffer.toString();
       }
@@ -51,22 +51,20 @@ class Printer {
                 .map((it) => it.continuedFunctionDeclaration)
                 .join(",\n"))
             ..writeln(",) {")
-            ..writeln("switch (this.runtimeType) {")
-            ..writeln(continuedSwitchStatement(typeParamData))
-            ..writeln("}")
+            ..writeln(continuedTypeCheckStatement(typeParamData))
             ..writeln("}"))
           .toString();
     }
 
     String joinStatement(final Iterable<GeneratedCodeData> typeParamData) {
-      String joinSwitchStatement(
+      String joinTypeCheckStatement(
           final Iterable<GeneratedCodeData> typeParamData) {
         final caseBuffer = StringBuffer();
         typeParamData.forEach((it) {
           caseBuffer
-            ..writeln("case ${it.type}:")
+            ..writeln("if (this is ${it.type}) {")
             ..writeln("r = ${it.joinFunction}")
-            ..writeln("break;");
+            ..writeln("}");
         });
         return caseBuffer.toString();
       }
@@ -79,9 +77,7 @@ class Printer {
                 .join(",\n"))
             ..writeln(",) {")
             ..writeln("$typeParam ${typeParam.toLowerCase()};")
-            ..writeln("switch (this.runtimeType) {")
-            ..writeln(joinSwitchStatement(typeParamData))
-            ..writeln("}")
+            ..writeln(joinTypeCheckStatement(typeParamData))
             ..writeln("return ${typeParam.toLowerCase()};")
             ..writeln("}"))
           .toString();

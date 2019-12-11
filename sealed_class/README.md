@@ -11,10 +11,10 @@ With this lib you can generate an unlimited amount of sealed subclasses.
 
 ```yaml
 dependencies:
-  sealed_class: 2.0.0
+  sealed_class: 3.0.0
 
 dev_dependencies:
-  sealed_class_generator: 2.0.0
+  sealed_class_generator: 3.0.0
   build_runner: X.X.X
 ```
 

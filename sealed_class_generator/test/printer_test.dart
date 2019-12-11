@@ -22,15 +22,13 @@ void continued(
 Function(A) continuationA,
 Function(B) continuationB
 ,) {
-switch (this.runtimeType) {
-case A:
+if (this is A) {
 continuationA(this);
-break;
-case B:
-continuationB(this);
-break;
-
 }
+if (this is B) {
+continuationB(this);
+}
+
 }
 
 R join<R>(
@@ -38,15 +36,13 @@ R Function(A) joinA,
 R Function(B) joinB
 ,) {
 R r;
-switch (this.runtimeType) {
-case A:
+if (this is A) {
 r = joinA(this);
-break;
-case B:
-r = joinB(this);
-break;
-
 }
+if (this is B) {
+r = joinB(this);
+}
+
 return r;
 }
 
